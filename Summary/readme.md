@@ -1,4 +1,135 @@
 
+## Manual Linear Regression (Normal Equation)
+Prepare data (only first 7 rows from Asian cars, 2 features):
+```python
+X = df.loc[df["origin"] == "Asia", ["vehicle_weight", "model_year"]].head(7).to_numpy()
+y = np.array([1100, 1300, 800, 900, 1000, 1100, 1200])
+```
+## 2. Compute normal equation:
+
+- w=(XTX)−1XTy
+```pyhton
+XTX = X.T @ X
+XTX_inv = np.linalg.inv(XTX)
+w = XTX_inv @ X.T @ y
+```
+## 3. Sum of weights:
+w_sum = w.sum()
+print(w_sum)
+- w contains the regression coefficients for vehicle_weight and model_year.
+
+- w_sum is just the sum of these two coefficients — a quick check or summary statistic.
+
+
+##  Handle Missing Values
+```python
+print("Missing values per column:")
+print(df.isnull().sum())
+
+# Fill missing values
+for col in df.columns:
+    if df[col].dtype == 'object':  # categorical
+        df[col] = df[col].fillna('NA')
+    else:  # numerical
+        df[col] = df[col].fillna(0.0)
+
+print("\nMissing values after filling:")
+print(df.isnull().sum())
+```
+## Basic Statistics and Correlations
+```python
+# Mode / Median example
+df['industry'].mode()[0]
+df['horsepower'].median()
+
+# Correlation matrix (numerical features)
+corr_matrix = df.corr(numeric_only=True)
+
+# Find strongest correlation excluding self
+corr_unstacked = corr_matrix.unstack().sort_values(ascending=False)
+corr_unstacked = corr_unstacked[corr_unstacked < 1]
+biggest_corr = corr_unstacked.idxmax()
+corr_value = corr_unstacked.max()
+print(f"Biggest correlation: {biggest_corr} = {corr_value:.2f}")
+```
+## Mutual Information for Categorical Features
+```python
+from sklearn.feature_selection import mutual_info_classif
+
+categorical_cols = ['industry', 'location', 'lead_source', 'employment_status']
+
+# Convert to numeric codes
+data = df[categorical_cols + ['converted']].dropna()
+for col in categorical_cols:
+    data[col] = data[col].astype('category').cat.codes
+
+X = data[categorical_cols]
+y = data['converted']
+mi_scores = mutual_info_classif(X, y, discrete_features=True, random_state=1)
+
+mi_df = pd.DataFrame({'Feature': categorical_cols, 'MI Score': mi_scores}).sort_values(by='MI Score', ascending=False)
+print(mi_df)
+```
+## Random Forest Model (Numeric Features)
+```python
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score
+
+features = ['number_of_courses_viewed', 'annual_income', 'interaction_count', 'lead_score']
+X = df[features].fillna(df[features].median())
+y = df['converted']
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=1)
+
+model = RandomForestClassifier(random_state=1)
+model.fit(X_train, y_train)
+
+y_pred = model.predict(X_test)
+acc = accuracy_score(y_test, y_pred)
+print(f"Model Accuracy: {acc:.2f}")
+```
+## Logistic Regression with Hyperparameter Tuning (GridSearchCV)
+```python
+from sklearn.linear_model import LogisticRegression
+from sklearn.preprocessing import StandardScaler
+from sklearn.pipeline import Pipeline
+from sklearn.model_selection import GridSearchCV
+
+X = df[features].fillna(0)
+y = df['converted']
+
+pipeline = Pipeline([
+    ('scaler', StandardScaler()),
+    ('logreg', LogisticRegression(max_iter=1000))
+])
+
+param_grid = {'logreg__C': [0.01, 0.1, 1, 10, 100]}
+grid = GridSearchCV(pipeline, param_grid, cv=5, scoring='accuracy')
+grid.fit(X, y)
+
+print("Best C:", grid.best_params_['logreg__C'])
+print("Best CV accuracy:", grid.best_score_)
+
+```
+
+## Logistic Regression Single Feature Testing
+```python
+X = df[['number_of_courses_viewed']].fillna(0)
+y = df['converted']
+
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+for C in [0.01, 0.1, 1, 10, 100]:
+    model = LogisticRegression(C=C, max_iter=1000)
+    model.fit(X_train, y_train)
+    acc = model.score(X_test, y_test)
+    print(f"C={C}: Accuracy={acc:.2f}")
+```
+
 # Machine Learning Model Training & Evaluation Reference
 ## 1️⃣ Split the Dataset (Train / Validation / Test)
 from sklearn.model_selection import train_test_split
