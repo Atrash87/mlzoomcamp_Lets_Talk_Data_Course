@@ -11,7 +11,7 @@ Use is restricted to **research purposes only**.
 
 ## Project Structure
 
-air_quality_project/
+midtearm_project/
 ├── notebook.ipynb
 ├── train.py
 ├── app.py
@@ -19,7 +19,6 @@ air_quality_project/
 ├── Dockerfile
 ├── feature_columns.pkl
 ├── air_quality_model.pkl
-├── deployment_screenshot.png
 └── README.md
 
 ## Problem Description
