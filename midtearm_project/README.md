@@ -36,7 +36,7 @@ Accurate predictions can help improve environmental monitoring systems, enable e
 
 ### 1. Clone or Extract the Project
 ```bash
-git clone https://github.com/<your-username>/air_quality_project.git
+git clone https://github.com/Atrash87/midtearm_project.git
 cd air_quality_project
 ```
 ## 2. Install Dependencies
