@@ -105,12 +105,12 @@ res = requests.post("http://localhost:8000/predict", json=data)
 print(res.json())
 ```
 **This sends a test request to the running API and returns the predicted CO concentration.**
+
+
 **Notes**
 
-    notebook.ipynb includes EDA, feature analysis, and model tuning.
+    - notebook.ipynb includes EDA, feature analysis, and model tuning.
 
-    train.py trains and saves the final model.
+    - train.py trains and saves the final model.
 
-    app.py serves predictions through FastAPI.
-
-    deployment_screenshot.png shows the API running locally in Docker.
+    - app.py serves predictions through FastAPI.
