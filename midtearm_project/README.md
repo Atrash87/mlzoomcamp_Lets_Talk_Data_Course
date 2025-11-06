@@ -57,8 +57,9 @@ python train.py
 
     feature_columns.pkl
 
-Run the Web App
-Option A: Run Directly
+## Run the Web App
+## Option A: 
+## Run Directly
 
 uvicorn app:app --reload
 
@@ -77,17 +78,19 @@ Example input:
   "CO_roll3": 1.1
 }
 
-Option B: Run with Docker
+## Option B: 
+## Run with Docker
 
 docker build -t air_quality_api .
 docker run -d -p 8000:8000 air_quality_api
 
-Then open:
+**Then open:**
 
     http://localhost:8000
 
 http://localhost:8000/docs
-Notes
+
+**Notes**
 
     notebook.ipynb includes EDA, feature analysis, and model tuning.
 
