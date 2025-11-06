@@ -86,6 +86,9 @@ http://127.0.0.1:8000/docs
 ## Option B: 
 ## Run with Docker via pyhton
 
+Once the Docker container is running, you can send a test request to the API using Python.  
+Make sure the container is active and the API is available at `http://localhost:8000`.
+
 ```bash
 docker build -t air_quality_api .
 docker run -d -p 8000:8000 air_quality_api
