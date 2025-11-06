@@ -81,9 +81,10 @@ http://127.0.0.1:8000/docs
 ## Option B: 
 ## Run with Docker via pyhton
 
+```bash
 docker build -t air_quality_api .
 docker run -d -p 8000:8000 air_quality_api
-
+```
 **Then open:**
 
 http://localhost:8000
