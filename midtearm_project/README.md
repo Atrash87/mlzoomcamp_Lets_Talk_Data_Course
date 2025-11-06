@@ -18,8 +18,14 @@ midtearm_project/
 ├── requirements.txt
 ├── Dockerfile
 ├── feature_columns.pkl
-├── air_quality_model.pkl
 └── README.md
+
+**Note:** The trained model file (`air_quality_model.pkl`, ~100 MB) is not included due to GitHub size limits.  
+You can generate it locally by running:
+```bash
+python train.py
+```
+**as illustrated at steps below**
 
 ## Problem Description
 Air pollution poses a serious health and environmental threat in many urban areas.  
