@@ -25,7 +25,7 @@ You can generate it locally by running:
 ```bash
 python train.py
 ```
-**as illustrated at steps below**
+****as illustrated at steps below**
 
 ## Problem Description
 Air pollution poses a serious health and environmental threat in many urban areas.  
