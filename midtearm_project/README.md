@@ -22,6 +22,15 @@ air_quality_project/
 ├── deployment_screenshot.png
 └── README.md
 
+## Problem Description
+Air pollution poses a serious health and environmental threat in many urban areas.  
+This project focuses on analyzing and modeling air quality data to understand the variation of pollutant levels—especially carbon monoxide (CO)—based on time and environmental sensor readings.
+
+## Objective
+The main goal is to build a predictive model that can estimate **carbon monoxide (CO) concentration** using sensor data and temporal features.  
+Accurate predictions can help improve environmental monitoring systems, enable early warnings for high pollution levels, and support better decision-making for air quality management.
+
+
 
 ## Setup Instructions
 
@@ -29,19 +38,20 @@ air_quality_project/
 ```bash
 git clone https://github.com/<your-username>/air_quality_project.git
 cd air_quality_project
+```
+## 2. Install Dependencies
 
-2. Install Dependencies
-
+```python
 python -m venv venv
 source venv/bin/activate    # macOS/Linux
 venv\Scripts\activate       # Windows
 pip install -r requirements.txt
-
+```
 3. Train the Model (Optional)
-
+```python
 python train.py
-
-This will create:
+```
+## This will create:
 
     air_quality_model.pkl
 
