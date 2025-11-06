@@ -46,7 +46,7 @@ source venv/bin/activate    # macOS/Linux
 venv\Scripts\activate       # Windows
 pip install -r requirements.txt
 ```
-## 3. Train the Model (Optional)
+## 3. Train the Model
 ```python
 python train.py
 ```
