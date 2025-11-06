@@ -108,9 +108,4 @@ print(res.json())
 
 
 **Notes**
-
-    - notebook.ipynb includes EDA, feature analysis, and model tuning.
-
-    - train.py trains and saves the final model.
-
-    - app.py serves predictions through FastAPI.
+f
