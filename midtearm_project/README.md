@@ -65,11 +65,11 @@ uvicorn app:app --reload
 
 Then open in your browser:
 
-    http://127.0.0.1:8000
+http://127.0.0.1:8000
 
 http://127.0.0.1:8000/docs
 
-Example input:
+**Example input:**
 
 {
   "hour": 10,
@@ -79,17 +79,32 @@ Example input:
 }
 
 ## Option B: 
-## Run with Docker
+## Run with Docker via pyhton
 
 docker build -t air_quality_api .
 docker run -d -p 8000:8000 air_quality_api
 
 **Then open:**
 
-    http://localhost:8000
+http://localhost:8000
 
 http://localhost:8000/docs
 
+**Example Input for Prediction (via Python)**
+```python
+import requests
+
+data = {
+    "hour": 10,
+    "day_of_week": 2,
+    "month": 5,
+    "CO_roll3": 1.1
+}
+
+res = requests.post("http://localhost:8000/predict", json=data)
+print(res.json())
+```
+**This sends a test request to the running API and returns the predicted CO concentration.**
 **Notes**
 
     notebook.ipynb includes EDA, feature analysis, and model tuning.
