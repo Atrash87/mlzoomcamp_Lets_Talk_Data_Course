@@ -7,45 +7,45 @@ Air pollution, particularly fine particulate matter (PM2.5), poses significant p
 
 The primary objective of this project is to develop and deploy a reliable machine learning model for hourly PM2.5 concentration forecasting. The project follows a complete end-to-end pipeline:
 
-    - Conduct thorough Exploratory Data Analysis (EDA) to understand data patterns and relationships.
+- Conduct thorough Exploratory Data Analysis (EDA) to understand data patterns and relationships.
 
-    - Perform extensive feature engineering to create predictive features from the time-series data.
+- Perform extensive feature engineering to create predictive features from the time-series data.
 
-    - Train, compare, and tune multiple regression models to identify the best performer.
+- Train, compare, and tune multiple regression models to identify the best performer.
 
-    - Containerize the final model into a scalable API using Docker for easy deployment and integration.
+- Containerize the final model into a scalable API using Docker for easy deployment and integration.
 
 ## Dataset Information
 
 This project uses the Beijing PM2.5 Data Set from the UCI Machine Learning Repository.
 
-    - Source: UCI Machine Learning Repository (ID: 381)
+- Source: UCI Machine Learning Repository (ID: 381)
 
-    - Time Period: January 1st, 2010, to December 31st, 2014.
+- Time Period: January 1st, 2010, to December 31st, 2014.
 
-    - Frequency: Hourly measurements.
+- Frequency: Hourly measurements.
 
-    - Instances: 43,824
+- Instances: 43,824
 
-    - Features: 13
+- Features: 13
 
-    Target Variable: pm2.5 (PM2.5 concentration in µg/m³)
+  Target Variable: pm2.5 (PM2.5 concentration in µg/m³)
 
   **Key Features:** 
 
-       - DEWP: Dew Point (°C)
+- DEWP: Dew Point (°C)
 
-        - TEMP: Temperature (°C)
+- TEMP: Temperature (°C)
 
-        - PRES: Pressure (hPa)
+- PRES: Pressure (hPa)
 
-        - cbwd: Combined wind direction (Categorical)
+- cbwd: Combined wind direction (Categorical)
 
-        - Iws: Cumulated wind speed (m/s)
+- Iws: Cumulated wind speed (m/s)
 
-        - Is: Cumulated hours of snow
+- Is: Cumulated hours of snow
 
-        - Ir: Cumulated hours of rain
+- Ir: Cumulated hours of rain
 
     License: Creative Commons Attribution 4.0 International (CC BY 4.0)
 
@@ -84,7 +84,7 @@ Prerequisites
     bash
 
 git clone <repository-url>
-cd pm25-forecasting
+cd 1st_capstone_project
 
 **Create and activate a virtual environment:**
 bash
@@ -108,15 +108,16 @@ The easiest way to run the application is using Docker Compose, which handles al
 
 docker-compose up --build
 
-    The API will be available at http://localhost:8000.
+The API will be available at http://localhost:8000.
 
-    Access the interactive API documentation at http://localhost:8000/docs.
+Access the interactive API documentation at http://localhost:8000/docs.
 
 **Using the API**
 
 Once the service is running, you can make predictions by sending a POST request to the /predict endpoint.
 
 **Example using curl:**
+```bash
 bash
 
 curl -X 'POST' \
@@ -136,19 +137,19 @@ curl -X 'POST' \
     "pm2.5_roll_mean_6h": 18.5
   }
 }'
-
+```
 The response will include the predicted PM2.5 concentration for the next hour and an associated Air Quality Index (AQI) category.
 Model Overview
 
 **The modeling process involved:**
 
-    - Feature Engineering: Creating lag features (1h, 3h, 6h, 12h, 24h), rolling statistics (mean, std, min, max), and cyclical time features.
+- Feature Engineering: Creating lag features (1h, 3h, 6h, 12h, 24h), rolling statistics (mean, std, min, max), and cyclical time features.
 
-    - Model Comparison: Linear Regression, Random Forest, XGBoost, and LightGBM were evaluated using Time-Series Cross-Validation.
+- Model Comparison: Linear Regression, Random Forest, XGBoost, and LightGBM were evaluated using Time-Series Cross-Validation.
 
-    - Hyperparameter Tuning: RandomizedSearchCV was used to optimize the top-performing models.
+- Hyperparameter Tuning: RandomizedSearchCV was used to optimize the top-performing models.
 
-    - Final Model: A tuned XGBoost Regressor was selected as the final model for deployment based on its performance in R² score and Mean Absolute Error (MAE).
+- Final Model: A tuned XGBoost Regressor was selected as the final model for deployment based on its performance in R² score and Mean Absolute Error (MAE).
 
 Citation:
 
