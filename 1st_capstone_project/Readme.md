@@ -78,46 +78,45 @@ Prerequisites
 
     Docker and Docker Compose (for containerized deployment)
 
-## Local Development Setup
+Local Development Setup
 
-  **Clone the repository:**
-    bash
+1. Clone the repository:
+bash
 
-git clone <repository-url>
+git clone <https://github.com/Atrash87/mlzoomcamp_Lets_Talk_Data_Course.git>
 cd 1st_capstone_project
 
-**Create and activate a virtual environment:**
+2. Create and activate a virtual environment:
 bash
 
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 
-**Install the required dependencies:**
+3. Install the required dependencies:
 bash
 
 pip install -r requirements.txt
 
-Running the API with Docker (Recommended)
+Running the API with Docker
 
 The easiest way to run the application is using Docker Compose, which handles all dependencies.
 
     Ensure you have Docker and Docker Compose installed.
 
-  **From the project root directory, build and start the service:**
+    From the project root directory, build and start the service:
     bash
 
 docker-compose up --build
 
-The API will be available at http://localhost:8000.
+    The API will be available at http://localhost:8000.
 
-Access the interactive API documentation at http://localhost:8000/docs.
+    Access the interactive API documentation at http://localhost:8000/docs.
 
-**Using the API**
+Using the API
 
 Once the service is running, you can make predictions by sending a POST request to the /predict endpoint.
 
-**Example using curl:**
-```bash
+Example using curl:
 bash
 
 curl -X 'POST' \
@@ -137,19 +136,28 @@ curl -X 'POST' \
     "pm2.5_roll_mean_6h": 18.5
   }
 }'
-```
-The response will include the predicted PM2.5 concentration for the next hour and an associated Air Quality Index (AQI) category.
+
+The response will include:
+
+    Predicted PM2.5 concentration for the next hour
+
+    Associated Air Quality Index (AQI) category
+
+    Confidence score (0-1)
+
+    List of any missing features (if applicable)
+
 Model Overview
 
-**The modeling process involved:**
+The modeling process involved:
 
-- Feature Engineering: Creating lag features (1h, 3h, 6h, 12h, 24h), rolling statistics (mean, std, min, max), and cyclical time features.
+    Feature Engineering: Creating lag features (1h, 3h, 6h, 12h, 24h), rolling statistics (mean, std, min, max), and cyclical time features.
 
-- Model Comparison: Linear Regression, Random Forest, XGBoost, and LightGBM were evaluated using Time-Series Cross-Validation.
+    Model Comparison: Linear Regression, Random Forest, XGBoost, and LightGBM were evaluated using Time-Series Cross-Validation.
 
-- Hyperparameter Tuning: RandomizedSearchCV was used to optimize the top-performing models.
+    Hyperparameter Tuning: RandomizedSearchCV was used to optimize the top-performing models.
 
-- Final Model: A tuned XGBoost Regressor was selected as the final model for deployment based on its performance in R² score and Mean Absolute Error (MAE).
+    Final Model: A tuned XGBoost Regressor was selected as the final model for deployment based on its performance in R² score and Mean Absolute Error (MAE).
 
 Citation:
 
