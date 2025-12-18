@@ -83,7 +83,7 @@ This project uses the Beijing PM2.5 Data Set from the UCI Machine Learning Repos
 git clone <https://github.com/Atrash87/mlzoomcamp_Lets_Talk_Data_Course.git>
 cd 1st_capstone_project
 ```
-2. **Important**: one file could not be included on github due to size restrictions <https://drive.google.com/file/d/16FSIK1lNTTb7ttS_p5BniusD20IsnONH/view?usp=drive_link> add to the **models** folder.
+2. **Important**: one file could not be included on github due to size restrictions [link]<https://drive.google.com/file/d/16FSIK1lNTTb7ttS_p5BniusD20IsnONH/view?usp=drive_link> add to the **models** folder.
 2. Create and activate a virtual environment:
 
 ```bash
