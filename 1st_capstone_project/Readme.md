@@ -51,7 +51,7 @@ This project uses the Beijing PM2.5 Data Set from the UCI Machine Learning Repos
 
 ## Project Structure
 
-bash
+```bash
 pm25-forecasting/
 ├── notebooks/               # Jupyter notebooks for analysis and modeling
 │   ├── 01_Cleaning_EDA.ipynb
@@ -70,7 +70,7 @@ pm25-forecasting/
 ├── docker-compose.yml      # Orchestration for multi-container setup
 ├── requirements.txt        # Python dependencies
 └── README.md               # This file
-
+```
 Setup and Installation Instructions
 Prerequisites
 
