@@ -51,7 +51,7 @@ This project uses the Beijing PM2.5 Data Set from the UCI Machine Learning Repos
 
 ## Project Structure
 
-text
+bash
 pm25-forecasting/
 ├── notebooks/               # Jupyter notebooks for analysis and modeling
 │   ├── 01_Cleaning_EDA.ipynb
