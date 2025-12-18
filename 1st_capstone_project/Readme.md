@@ -52,15 +52,12 @@ This project uses the Beijing PM2.5 Data Set from the UCI Machine Learning Repos
 ## Project Structure
 
 ```bash
-pm25-forecasting/
+1st_capstone_project/
 ├── notebooks/               # Jupyter notebooks for analysis and modeling
 │   ├── 01_Cleaning_EDA.ipynb
 │   ├── 02_Feature_Engineering.ipynb
 │   └── 03_Modeling_Tuning.ipynb
-├── app/                     # FastAPI application for model serving
-│   ├── api.py              # Main API application
-│   ├── model.py            # Model loading and prediction logic
-│   └── schemas.py          # Pydantic models for request/response
+── api.py              # Main API application
 ├── models/                  # Serialized model artifacts
 │   ├── best_pm25_model.pkl
 │   ├── scaler.pkl
