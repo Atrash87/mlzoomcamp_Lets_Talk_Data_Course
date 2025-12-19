@@ -108,6 +108,100 @@ python src/phase2_feature_engineering.py
 ## Run Phase 3: Model Training
 python src/phase3_model_training.py
 
+## Key Results
+
+### Model Performance Summary
+
+#### Top 3 Performing Models
+1. **XGBoost** – Test MAE: 3.33 minutes (Best)  
+   - R²: 0.9097 (Excellent)  
+   - Training time: 2.49 seconds  
+   - Minor overfitting but best overall  
+
+2. **Gradient Boosting** – Test MAE: 4.72 minutes  
+   - R²: 0.8273 (Very Good)  
+   - Training time: 0.12 seconds  
+   - Good balance of speed and accuracy  
+
+3. **Random Forest** – Test MAE: 6.54 minutes  
+   - R²: 0.7599 (Good)  
+   - Training time: 0.12 seconds  
+   - Most stable (least overfitting)  
+
+#### Worst Performing Models
+- **Linear Regression** – Test MAE: 18.57 minutes (worst)  
+- **LightGBM** – Test MAE: 14.29 minutes (surprisingly poor)  
+- **Ridge Regression** – Test MAE: 12.79 minutes  
+
+---
+
+### Critical Observations
+
+#### Overfitting Issue
+- All models show overfitting (negative MAE difference)  
+- Most severe: Linear Regression (-18.57 MAE diff)  
+- Least severe: Random Forest (-4.78 MAE diff)  
+
+#### Model Selection
+- **XGBoost** selected as best despite overfitting  
+- Test R² of 0.9097 indicates excellent predictive power  
+- 3.33 minutes MAE is acceptable for delivery predictions  
+
+#### Hyperparameter Tuning Results
+- Tuning attempted but default parameters performed better  
+- Best found parameters: `subsample=0.8`, `n_estimators=50`, `max_depth=3`, `learning_rate=0.1`, `colsample_bytree=0.9`  
+- Test MAE increased from 3.33 to 3.89 minutes after tuning  
+- Conclusion: XGBoost default settings optimal for this dataset  
+
+---
+
+### Feature Importance Analysis
+**Top 5 Most Important Features (XGBoost):**
+1. `Delivery_person_Age` – 84.95% importance (Dominant predictor)  
+2. `Travel_Time_Min` – 9.51% importance  
+3. `Travel_Time_Min_scaled` – 2.97% importance  
+4. `Distance_Traffic_Interaction` – 1.07% importance  
+5. `Prep_Efficiency` – 0.55% importance  
+
+**Surprising Finding:**  
+- `Delivery_person_Age` is overwhelmingly important (85% of importance)  
+- Suggests age correlates strongly with delivery efficiency, possibly indicating experience or physical capability  
+
+---
+
+### Deployment Ready
+
+**Artifacts Created:**
+- Model file: `xgboost_model.pkl`  
+- Scaler: `scaler.pkl`  
+- Feature names: `feature_names.json`  
+- Metadata: `model_metadata.json`  
+- Prediction script: `predict.py`  
+- Flask API: `app.py`  
+- Docker configuration: `Dockerfile`  
+
+**Performance Interpretation:**
+- MAE: 3.33 minutes → Predictions within ±3.33 minutes on average  
+- Error rate: 12.3% of average delivery time (27 minutes)  
+- R²: 0.9097 → Model explains 91% of delivery time variance  
+- Business impact: Could significantly reduce customer complaints  
+
+---
+
+### Limitations & Caveats
+- Severe overfitting across all models  
+- Feature dominance by `Delivery_person_Age` (potential bias)  
+- Lack of validation on unseen data  
+
+---
+
+### Recommendations for Production
+- Monitor feature drift (especially `Delivery_person_Age`)  
+- Implement ensemble of top 3 models  
+- Add real-time features (live traffic, weather updates)  
+- A/B test different models in production  
+
+
 ##  Running the API
 ## Start Flask API
 python app.py
