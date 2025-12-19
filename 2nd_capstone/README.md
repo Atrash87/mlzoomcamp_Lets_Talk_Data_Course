@@ -50,30 +50,30 @@ The dataset contains delivery information from Zomato including:
 └── README.md # This file
 ```
 
-## Machine Learning Pipeline
+#  Machine Learning Pipeline
 The project follows a comprehensive 3-phase approach:
 
-### Phase 1: Data Preparation
+# Phase 1: Data Preparation
 - Cleaning date/time columns with inconsistent formats  
 - Calculating Haversine distance between locations  
 - Handling missing values  
 - Encoding categorical variables  
 
-### Phase 2: Feature Engineering & EDA
+#  Phase 2: Feature Engineering & EDA
 - Advanced feature creation (speed metrics, interaction terms)  
 - Temporal feature engineering (cyclic encoding, time categories)  
 - Spatial feature extraction  
 - Exploratory Data Analysis with visualizations  
 - Feature transformation and selection  
 
-### Phase 3: Model Training & Deployment
+#  Phase 3: Model Training & Deployment
 - Training 9 different algorithms  
 - Hyperparameter tuning for best model  
 - Feature importance analysis  
 - Flask API development  
 - Docker containerization  
 
-### Models Evaluated
+#  Models Evaluated
 - Linear Regression (Baseline)  
 - Ridge Regression  
 - Lasso Regression  
@@ -84,13 +84,13 @@ The project follows a comprehensive 3-phase approach:
 - LightGBM Regressor  
 - K-Neighbors Regressor  
 
-## Setup and Installation
+#  Setup and Installation
 
-### Prerequisites
+#  Prerequisites
 - Python 3.8 or higher  
 - pip package manager  
 
-### Installation
+#  Installation
 ```bash
 # Clone the repository
 git clone https://github.com/yourusername/zomato-delivery-prediction.git
@@ -108,7 +108,7 @@ python src/phase2_feature_engineering.py
 # Run Phase 3: Model Training
 python src/phase3_model_training.py
 
-### Running the API
+#  Running the API
 # Start Flask API
 python app.py
 
@@ -137,7 +137,7 @@ curl -X POST http://localhost:5000/predict \
     "Is_Weekend": 0
   }'
 
-### Docker Deployment
+#  Docker Deployment
 # Build Docker image
 docker build -t zomato-delivery-predictor .
 
